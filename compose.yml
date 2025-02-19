@@ -1,0 +1,8 @@
+services:
+  notice:
+    image: ghcr.io/takumi3488/simple-line-notice:0.1.1
+    platform: linux/amd64
+    environment:
+      - LINE_TOKEN=LxYqAnj4vJzRmVV6KNRLmmSVANFJrmP4Q3tmqI3LH7L7e65F+NDUjth0IxLPbFDFxJZAr3hGa6JcLDXKRmeLhl1NNaomjwySu8RDzK+8PkJHCSgOUt/wMM3SNc4Q7ce873+9VwJ9Zgw5F0jd4DGOugdB04t89/1O/w1cDnyilFU=
+    ports:
+      - 3000:3000
