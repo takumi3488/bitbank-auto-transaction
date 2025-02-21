@@ -135,7 +135,7 @@ impl BitbankClient {
         T: serde::Serialize,
         U: serde::de::DeserializeOwned,
     {
-        let url = format!("{}/{}", self.endpoint, path);
+        let url = format!("{}{}", self.endpoint, path);
         let access_request_time = self.get_access_request_time();
         let body = serde_json::to_string(body).unwrap();
         let access_signature = self.get_access_signature(&format!(
