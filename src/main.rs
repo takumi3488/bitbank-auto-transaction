@@ -96,12 +96,19 @@ async fn main() {
                         if let Ok(url) = env::var("WEBHOOK_URL") {
                             let client = reqwest::Client::new();
                             let body = format!(
-                                "注文約定: {}{}で{}{}を{}",
+                                "注文約定: {}{}で{}{}を{}\n{}トリガー価格: {}\n24時間平均価格: {}",
                                 order.data.average_price,
                                 pair,
                                 req.amount,
                                 asset,
-                                if side == "sell" { "売却" } else { "購入" }
+                                if side == "sell" { "売却" } else { "購入" },
+                                if side == "sell" { "売却" } else { "購入" },
+                                if side == "sell" {
+                                    sell_trigger_price
+                                } else {
+                                    buy_trigger_price
+                                },
+                                middle
                             );
                             let res = client.post(&url).body(body).send().await;
                             println!("{:?}", res);
