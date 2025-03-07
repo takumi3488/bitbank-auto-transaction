@@ -96,7 +96,7 @@ async fn main() {
                         if let Ok(url) = env::var("WEBHOOK_URL") {
                             let client = reqwest::Client::new();
                             let body = format!(
-                                "注文約定: {}{}で{}{}を{}\n{}トリガー価格: {}\n24時間平均価格: {}",
+                                "注文約定: {}{}で{}{}を{}\n{}トリガー価格: {}\n予定価格{}\n24時間平均価格: {}",
                                 order.data.average_price,
                                 pair,
                                 req.amount,
@@ -107,6 +107,11 @@ async fn main() {
                                     sell_trigger_price
                                 } else {
                                     buy_trigger_price
+                                },
+                                if side == "sell" {
+                                    sell
+                                } else {
+                                    buy
                                 },
                                 middle
                             );
